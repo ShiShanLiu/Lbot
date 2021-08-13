@@ -3,15 +3,19 @@
 
 import discord
 import json
+from PIL import Image
+import matplotlib.pyplot as plt
 
 with open("account.json", encoding="utf-8") as f:
     accountDICT = json.loads(f.read())
 
 class BotClient(discord.Client):
+    
     async def on_ready(self):
         print('Logged on as {} with id {}'.format(self.user, self.user.id))
 
     async def on_message(self, message):
+        img = Image.open("dove.jpg")
         # Don't respond to bot itself. Or it would create a non-stop loop.
         # 如果訊息來自 bot 自己，就不要處理，直接回覆 None。不然會 Bot 會自問自答個不停。
         if message.author == self.user:
@@ -23,9 +27,9 @@ class BotClient(discord.Client):
             print("本 bot 被叫到了！")
             msg = message.content.replace("<@!{}> ".format(self.user.id), "")
             if msg == 'ping':
-                await message.reply('piang')
+                await message.reply(img.show())
             if msg == 'ping ping':
-                await message.reply('piang piang')
+                await message.reply(img.show())
 
 if __name__ == "__main__":
     client = BotClient()
