@@ -15,7 +15,7 @@ class BotClient(discord.Client):
         print('Logged on as {} with id {}'.format(self.user, self.user.id))
 
     async def on_message(self, message):
-        img = Image.open("dove.png")
+        img = Image.open("dove.jpg")
         # Don't respond to bot itself. Or it would create a non-stop loop.
         # 如果訊息來自 bot 自己，就不要處理，直接回覆 None。不然會 Bot 會自問自答個不停。
         if message.author == self.user:
