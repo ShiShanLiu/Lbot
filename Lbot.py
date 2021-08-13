@@ -28,8 +28,10 @@ class BotClient(discord.Client):
             msg = message.content.replace("<@!{}> ".format(self.user.id), "")
             if msg == 'ping':
                 await message.reply(img.show())
+                await message.reply("鴿子圖片會出現")
             if msg == 'ping ping':
                 await message.reply(img.show())
+                await message.reply("鴿子圖片會出現")
 
 if __name__ == "__main__":
     client = BotClient()
